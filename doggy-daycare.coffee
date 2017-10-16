@@ -2,9 +2,9 @@
 #   Keeps track of daycare dropoff and pickup
 #
 # Commands:
-#   dogbot daycare - Check if Ollie is at daycare
-#   dogbot dropoff - Set dropoff time for daycare
-#   dogbot pickup - Set pickup time for daycare
+#   hubot daycare - Check if Ollie is at daycare
+#   hubot dropoff - Set dropoff time for daycare
+#   hubot pickup - Set pickup time for daycare
 #
 # Author:
 #   jmhale
