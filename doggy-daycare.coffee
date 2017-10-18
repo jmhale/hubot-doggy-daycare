@@ -46,7 +46,7 @@ module.exports = (robot) ->
       res.send "Please set pickup or dropoff first."
 
   robot.respond /dropoff/i, (res) ->
-    name = res.message.user.name
+    name = res.message.user.real_name
     time = new Date
     robot.brain.set("daycare.atDaycare", true)
     robot.brain.set("daycare.time", time)
@@ -54,7 +54,7 @@ module.exports = (robot) ->
     res.send "Ollie has been dropped off at daycare by #{name} at #{time}."
 
   robot.respond /pickup/i, (res) ->
-    name = res.message.user.name
+    name = res.message.user.real_name
     time = new Date
     robot.brain.set("daycare.atDaycare", false)
     robot.brain.set("daycare.time", time)
