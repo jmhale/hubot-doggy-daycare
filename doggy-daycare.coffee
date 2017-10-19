@@ -25,7 +25,7 @@ class Format
 
   formatDate: (date) ->
     day = this.formatDay(date.getDay())
-    hour = this.forceTwoDigits(date.getHours())
+    hour = this.forceTwoDigits(date.getHours())-5
     minute = this.forceTwoDigits(date.getMinutes())
     "#{day} at #{hour}:#{minute}"
 
