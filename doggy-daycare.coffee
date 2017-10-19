@@ -49,7 +49,7 @@ module.exports = (robot) ->
       res.send "Please set pickup or dropoff first."
 
   robot.respond /dropoff/i, (res) ->
-    name = res.message.user.real_name
+    name = res.message.user.profile.display_name
     time = new Date
     formattedTime = format.formatDate(time)
     robot.brain.set("daycare.atDaycare", true)
@@ -59,7 +59,7 @@ module.exports = (robot) ->
 #{formattedTime}."
 
   robot.respond /pickup/i, (res) ->
-    name = res.message.user.real_name
+    name = res.message.user.profile.display_name
     time = new Date
     formattedTime = format.formatDate(time)
     robot.brain.set("daycare.atDaycare", false)
