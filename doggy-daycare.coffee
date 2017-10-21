@@ -23,21 +23,30 @@ class Format
     else
       "Not today"
 
-  formatDate: (date) ->
-    day = this.formatDay(date.getDay())
-    hour = this.forceTwoDigits(date.getHours())-5
-    minute = this.forceTwoDigits(date.getMinutes())
+  formatDate: (date, tz_offset) ->
+    localizedTime = this.localizeDate(date, tz_offset)
+    day = this.formatDay(localizedTime.getDay())
+    hour = this.forceTwoDigits(localizedTime.getHours())
+    minute = this.forceTwoDigits(localizedTime.getMinutes())
     "#{day} at #{hour}:#{minute}"
+
+  localizeDate: (date, tz_offset) ->
+    date = new Date date
+    new Date date.getTime() + (tz_offset)
 
 module.exports = (robot) ->
   format = new Format
 
   robot.respond /daycare/i, (res) ->
+    if res.message.user.tz_offset?
+      tz_offset = res.message.user.tz_offset
+    else
+      tz_offset = 0
     atDaycare = robot.brain.get('daycare.atDaycare')
     time = robot.brain.get('daycare.time')
     user = robot.brain.get('daycare.user')
     if atDaycare?
-      formattedTime = format.formatDate(time)
+      formattedTime = format.formatDate(time, tz_offset)
       if atDaycare
         res.send "Ollie is at daycare. Dropped off by #{user}, \
 #{formattedTime}"
@@ -49,9 +58,16 @@ module.exports = (robot) ->
       res.send "Please set pickup or dropoff first."
 
   robot.respond /dropoff/i, (res) ->
-    name = res.message.user.profile.display_name
+    if res.message.user.profile?.display_name?
+      name = res.message.user.profile.display_name
+    else
+      name = res.message.user.name
+    if res.message.user.tz_offset?
+      tz_offset = res.message.user.tz_offset
+    else
+      tz_offset = 0
     time = new Date
-    formattedTime = format.formatDate(time)
+    formattedTime = format.formatDate(localizedTime, tz_offset)
     robot.brain.set("daycare.atDaycare", true)
     robot.brain.set("daycare.time", time)
     robot.brain.set("daycare.user", name)
@@ -59,9 +75,16 @@ module.exports = (robot) ->
 #{formattedTime}."
 
   robot.respond /pickup/i, (res) ->
-    name = res.message.user.profile.display_name
+    if res.message.user.profile?.display_name?
+      name = res.message.user.profile.display_name
+    else
+      name = res.message.user.name
+    if res.message.user.tz_offset?
+      tz_offset = res.message.user.tz_offset
+    else
+      tz_offset = 0
     time = new Date
-    formattedTime = format.formatDate(time)
+    formattedTime = format.formatDate(localizedTime, tz_offset)
     robot.brain.set("daycare.atDaycare", false)
     robot.brain.set("daycare.time", time)
     robot.brain.set("daycare.user", name)
