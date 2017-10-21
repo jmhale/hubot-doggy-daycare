@@ -52,10 +52,10 @@ module.exports = (robot) ->
       robot.logger.info "System time: #{time}"
       robot.logger.info "Localized time: #{formattedTime}"
       if atDaycare
-        res.send "Ollie is at daycare. Dropped off by #{user}, \
+        res.send "Ollie is at daycare. Dropped off by #{user} at \
 #{formattedTime}"
       else
-        res.send "Ollie is not at daycare. Picked up by #{user}, \
+        res.send "Ollie is not at daycare. Picked up by #{user} at \
 #{formattedTime}"
     else
       res.send "I don't know when Ollie was last at daycare."
