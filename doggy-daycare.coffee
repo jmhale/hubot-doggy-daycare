@@ -48,7 +48,9 @@ module.exports = (robot) ->
     time = robot.brain.get('daycare.time')
     user = robot.brain.get('daycare.user')
     if atDaycare?
-      formattedTime = format.formatDate(time, tz_offset)
+      formattedTime = format.localizeDate(time, tz_offset)
+      robot.logger.info "System time: #{time}"
+      robot.logger.info "Localized time: #{formattedTime}"
       if atDaycare
         res.send "Ollie is at daycare. Dropped off by #{user}, \
 #{formattedTime}"
@@ -71,7 +73,9 @@ module.exports = (robot) ->
       tz_offset = 0
     time = new Date
     robot.logger.info "Set tz_offset is: #{tz_offset}"
-    formattedTime = format.formatDate(time, tz_offset)
+    formattedTime = format.localizeDate(time, tz_offset)
+    robot.logger.info "System time: #{time}"
+    robot.logger.info "Localized time: #{formattedTime}"
     robot.brain.set("daycare.atDaycare", true)
     robot.brain.set("daycare.time", time)
     robot.brain.set("daycare.user", name)
@@ -90,7 +94,9 @@ module.exports = (robot) ->
       tz_offset = 0
     time = new Date
     robot.logger.info "Set tz_offset is: #{tz_offset}"
-    formattedTime = format.formatDate(time, tz_offset)
+    formattedTime = format.localizeDate(time, tz_offset)
+    robot.logger.info "System time: #{time}"
+    robot.logger.info "Localized time: #{formattedTime}"
     robot.brain.set("daycare.atDaycare", false)
     robot.brain.set("daycare.time", time)
     robot.brain.set("daycare.user", name)
