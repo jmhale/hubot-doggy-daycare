@@ -32,7 +32,7 @@ class Format
 
   localizeDate: (date, tz_offset) ->
     date = new Date date
-    new Date date.getTime() + (tz_offset * 60 * 1000)
+    new Date date.getTime() + (tz_offset * 1000)
 
 module.exports = (robot) ->
   format = new Format
