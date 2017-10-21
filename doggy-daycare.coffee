@@ -50,7 +50,7 @@ module.exports = (robot) ->
     if atDaycare?
       # formattedTime = format.localizeDate(time, tz_offset)
 
-      formattedTime = time + tz_offset
+      formattedTime = time.getTime() + (tz_offset)
       robot.logger.info "System time: #{time}"
       robot.logger.info "Localized time: #{formattedTime}"
       if atDaycare
