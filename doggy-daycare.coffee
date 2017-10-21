@@ -67,7 +67,7 @@ module.exports = (robot) ->
     else
       tz_offset = 0
     time = new Date
-    formattedTime = format.formatDate(localizedTime, tz_offset)
+    formattedTime = format.formatDate(time, tz_offset)
     robot.brain.set("daycare.atDaycare", true)
     robot.brain.set("daycare.time", time)
     robot.brain.set("daycare.user", name)
@@ -84,7 +84,7 @@ module.exports = (robot) ->
     else
       tz_offset = 0
     time = new Date
-    formattedTime = format.formatDate(localizedTime, tz_offset)
+    formattedTime = format.formatDate(time, tz_offset)
     robot.brain.set("daycare.atDaycare", false)
     robot.brain.set("daycare.time", time)
     robot.brain.set("daycare.user", name)
