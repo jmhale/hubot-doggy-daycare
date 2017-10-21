@@ -40,17 +40,13 @@ module.exports = (robot) ->
   robot.respond /daycare/i, (res) ->
     if res.message.user.tz_offset?
       tz_offset = res.message.user.tz_offset
-      robot.logger.info "tz_offset from Slack is: #{tz_offset}"
     else
       tz_offset = 0
-    robot.logger.info "Set tz_offset is: #{tz_offset}"
     atDaycare = robot.brain.get('daycare.atDaycare')
     time = robot.brain.get('daycare.time')
     user = robot.brain.get('daycare.user')
     if atDaycare?
       formattedTime = format.localizeDate(time, tz_offset).toLocaleString()
-      robot.logger.info "System time: #{time}"
-      robot.logger.info "Localized time: #{formattedTime}"
       if atDaycare
         res.send "Ollie is at daycare. Dropped off by #{user} at \
 #{formattedTime}"
@@ -68,14 +64,10 @@ module.exports = (robot) ->
       name = res.message.user.name
     if res.message.user.tz_offset?
       tz_offset = res.message.user.tz_offset
-      robot.logger.info "tz_offset from Slack is: #{tz_offset}"
     else
       tz_offset = 0
     time = new Date
-    robot.logger.info "Set tz_offset is: #{tz_offset}"
     formattedTime = format.localizeDate(time, tz_offset).toLocaleString()
-    robot.logger.info "System time: #{time}"
-    robot.logger.info "Localized time: #{formattedTime}"
     robot.brain.set("daycare.atDaycare", true)
     robot.brain.set("daycare.time", time)
     robot.brain.set("daycare.user", name)
@@ -89,14 +81,10 @@ module.exports = (robot) ->
       name = res.message.user.name
     if res.message.user.tz_offset?
       tz_offset = res.message.user.tz_offset
-      robot.logger.info "tz_offset from Slack is: #{tz_offset}"
     else
       tz_offset = 0
     time = new Date
-    robot.logger.info "Set tz_offset is: #{tz_offset}"
     formattedTime = format.localizeDate(time, tz_offset).toLocaleString()
-    robot.logger.info "System time: #{time}"
-    robot.logger.info "Localized time: #{formattedTime}"
     robot.brain.set("daycare.atDaycare", false)
     robot.brain.set("daycare.time", time)
     robot.brain.set("daycare.user", name)
