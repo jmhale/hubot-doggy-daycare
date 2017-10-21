@@ -49,7 +49,8 @@ module.exports = (robot) ->
     user = robot.brain.get('daycare.user')
     if atDaycare?
       # formattedTime = format.localizeDate(time, tz_offset)
-      formattedTime = time.toLocaleString()
+
+      formattedTime = time + tz_offset
       robot.logger.info "System time: #{time}"
       robot.logger.info "Localized time: #{formattedTime}"
       if atDaycare
