@@ -32,7 +32,7 @@ class Format
 
   localizeDate: (date, tz_offset) ->
     date = new Date date
-    new Date date.getTime() + (tz_offset)
+    new Date date.getTime() + (tz_offset * 60 * 1000)
 
 module.exports = (robot) ->
   format = new Format
@@ -48,9 +48,7 @@ module.exports = (robot) ->
     time = robot.brain.get('daycare.time')
     user = robot.brain.get('daycare.user')
     if atDaycare?
-      # formattedTime = format.localizeDate(time, tz_offset)
-
-      formattedTime = time.getTime() + (tz_offset)
+      formattedTime = format.localizeDate(time, tz_offset)
       robot.logger.info "System time: #{time}"
       robot.logger.info "Localized time: #{formattedTime}"
       if atDaycare
