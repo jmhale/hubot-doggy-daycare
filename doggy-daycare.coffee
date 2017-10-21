@@ -48,7 +48,7 @@ module.exports = (robot) ->
     time = robot.brain.get('daycare.time')
     user = robot.brain.get('daycare.user')
     if atDaycare?
-      formattedTime = format.localizeDate(time, tz_offset)
+      formattedTime = format.localizeDate(time, tz_offset).toLocaleString()
       robot.logger.info "System time: #{time}"
       robot.logger.info "Localized time: #{formattedTime}"
       if atDaycare
@@ -73,7 +73,7 @@ module.exports = (robot) ->
       tz_offset = 0
     time = new Date
     robot.logger.info "Set tz_offset is: #{tz_offset}"
-    formattedTime = format.localizeDate(time, tz_offset)
+    formattedTime = format.localizeDate(time, tz_offset).toLocaleString()
     robot.logger.info "System time: #{time}"
     robot.logger.info "Localized time: #{formattedTime}"
     robot.brain.set("daycare.atDaycare", true)
@@ -94,7 +94,7 @@ module.exports = (robot) ->
       tz_offset = 0
     time = new Date
     robot.logger.info "Set tz_offset is: #{tz_offset}"
-    formattedTime = format.localizeDate(time, tz_offset)
+    formattedTime = format.localizeDate(time, tz_offset).toLocaleString()
     robot.logger.info "System time: #{time}"
     robot.logger.info "Localized time: #{formattedTime}"
     robot.brain.set("daycare.atDaycare", false)
