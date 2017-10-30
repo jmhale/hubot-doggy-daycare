@@ -57,7 +57,7 @@ module.exports = (robot) ->
       res.send "I don't know when Ollie was last at daycare."
       res.send "Please set pickup or dropoff first."
 
-  robot.respond /dropoff/i, (res) ->
+  robot.respond /(dropoff|drop off|dropped off)/i, (res) ->
     if res.message.user.profile?.display_name?
       name = res.message.user.profile.display_name
     else
@@ -74,7 +74,7 @@ module.exports = (robot) ->
     res.send "Ollie has been dropped off at daycare by #{name} at \
 #{formattedTime}."
 
-  robot.respond /pickup/i, (res) ->
+  robot.respond /(pickup|pick up|picked up)/i, (res) ->
     if res.message.user.profile?.display_name?
       name = res.message.user.profile.display_name
     else
