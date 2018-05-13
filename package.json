@@ -13,7 +13,7 @@
     "url": "https://github.com/jmhale/hubot-doggy-daycare/issues"
   },
   "dependencies": {
-    "underscore": "*"
+    "underscore": "^1.9.0"
   },
   "peerDependencies": {
     "hubot": "2.x"
