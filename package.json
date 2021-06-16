@@ -1,7 +1,7 @@
 {
   "name": "hubot-doggy-daycare",
   "description": "Keeps track of when Ollie is at Daycare",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "James Hale <james@jameshale.net>",
   "license": "MIT",
   "keywords": "hubot, hubot-scripts, dog",
